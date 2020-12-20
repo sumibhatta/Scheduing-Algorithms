@@ -74,7 +74,6 @@ void valueofCT()
     {
         tBT = tBT + But[i];
     }
-    tBT = tBT + 1;
 
     /*Calculate CT*/
     int y = 0;
@@ -83,7 +82,7 @@ void valueofCT()
     {
         if (CT[y] < At[y]) //CT hasen't reached AT // Idle CPU
         {
-
+            tBT+=1;
             do
             {
                 CT[y] += 1;
@@ -96,6 +95,9 @@ void valueofCT()
         {
             CT[y + 1] = CT[y] + But[y];
             rCT.push(CT[y+1]);
+        }
+        if(rCT.top() == tBT){
+            break;
         }
         y++;
     } while (CT[y] < tBT); //calculate CT until it reaches total burst time
